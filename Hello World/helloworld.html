@@ -1,16 +1,27 @@
+<!DOCTYPE html>
+<html>
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-</head>
-
-<body>
+    <meta charset="utf-8">
+    <script src="http://static.runoob.com/assets/vue/1.0.11/vue.min.js"></script>
+</head>>
 <div id="app">
+    <h1 v-if="Math.random()>0.5">
+        Yes
+    </h1>
+    <h1 v-else>
+        No
+    </h1>
     <ul>
         <li v-for="todo in todos">
-            {{premsg}}+{{todo.text}}
+            {{premsg}}+{{todo.text | reverse | uppercase}}
         </li>
     </ul>
 </div>
 <script>
+    Vue.filter('reverse', function (value) {
+        return value.split('').reverse().join('')
+    })
+
     var app = new Vue({
         el: '#app',
         data: {
@@ -24,3 +35,4 @@
     })
 </script>
 </body>
+</html>
